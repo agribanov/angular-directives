@@ -1,0 +1,9 @@
+.preview-image{
+    float: left;
+    width: 200px;
+}
+
+.main-image{
+    width: 500px;
+    margin: 0 auto;
+}

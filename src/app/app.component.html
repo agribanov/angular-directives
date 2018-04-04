@@ -1,0 +1,15 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  <h1>
+    Welcome to {{ title }}!
+  </h1>
+  <div class="main-image">
+    <app-preview-image [source] = "mainImageSrc" (select) = "onMainImageClick($event)"></app-preview-image>
+  </div>
+</div>
+<button (click)="togglePanel()">Toggle Panel</button>
+<ul [appHide]="isPanelVisible">
+  <li class="preview-image" *ngFor="let src of list">
+    <app-preview-image [source] = "src" (select)="onImageSelect($event)"></app-preview-image>
+  </li>
+</ul>
