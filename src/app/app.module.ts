@@ -3,19 +3,20 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
-import { PreviewImageComponent } from './preview-image/preview-image.component';
-import { HideDirective } from './hide.directive';
+import { ListComponent } from './list/list.component';
+import { DetailsComponent } from './details/details.component';
+import { UsersService } from './users.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PreviewImageComponent,
-    HideDirective
+    ListComponent,
+    DetailsComponent,
   ],
   imports: [
     BrowserModule
   ],
-  providers: [],
+  providers: [UsersService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
