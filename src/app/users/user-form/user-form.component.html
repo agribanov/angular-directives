@@ -1,0 +1,31 @@
+<form #userForm="ngForm" (submit)="$event.preventDefault()">
+  <input type="hidden" [ngModel]="user.id" name="id">
+  <label for="name">Name:</label>
+  <input type="text" 
+    required
+    minlength="5"
+    name="name" #userName="ngModel" 
+    [ngModel]="user.name" />
+  <div class="errors" *ngIf="userName.invalid">
+    <div *ngIf="userName.errors.required">This field is required</div>
+    <div *ngIf="userName.errors.minlength">This field is too short</div>
+  </div>
+
+
+  <label for="name">Age:</label>
+  <input type="number" 
+    name="age" #userAge="ngModel"
+    min="16"
+    required [ngModel]="user.age" />
+
+    <div class="errors" *ngIf="userAge.invalid">
+      <div *ngIf="userAge.errors.required">This field is required</div>
+      <div *ngIf="userAge.errors.minvalue">This field is too small</div>
+    </div>
+  
+  <button 
+    (click)="onSaveBtnClick(userForm.value, userAge)" 
+    [disabled] = "userForm.invalid"
+    >Save</button>
+  <button (click)="onCancelBtnClick()">Cancel</button>
+</form>

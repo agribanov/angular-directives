@@ -4,12 +4,14 @@
     <tr>
       <th>Name</th>
       <th>Age</th>
+      <th>Actions</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let user of users$ | async" [routerLink]="[user.id]">
       <td>{{user.name}}</td>
       <td>{{user.age}}</td>
+      <td><a [routerLink] = "['../', 'edit', user.id]">Edit</a></td>
     </tr>
   </tbody>
 </table>

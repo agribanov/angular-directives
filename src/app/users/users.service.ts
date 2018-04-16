@@ -7,14 +7,22 @@ import { of } from 'rxjs/observable/of';
 
 @Injectable()
 export class UsersService {
+  users = USERS
   constructor() { }
 
   getList(): Observable<User[]>{
-    return of(USERS);
+    return of(this.users);
   }
 
   get(id: number): Observable<User>{
-    const user = USERS.find(user => user.id === id);
+    const user = this.users.find(user => user.id === id);
+    return of(Object.assign({}, user));
+  }
+
+  update(user: User): Observable<User>{
+    this.users = this.users.map(savedUser => 
+      savedUser.id === user.id ? user : savedUser );
+
     return of(user)
   }
 
