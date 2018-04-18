@@ -6,7 +6,7 @@
     minlength="5"
     name="name" #userName="ngModel" 
     [ngModel]="user.name" />
-  <div class="errors" *ngIf="userName.invalid">
+  <div class="errors" *ngIf="userName.touched && userName.invalid">
     <div *ngIf="userName.errors.required">This field is required</div>
     <div *ngIf="userName.errors.minlength">This field is too short</div>
   </div>
@@ -18,7 +18,7 @@
     min="16"
     required [ngModel]="user.age" />
 
-    <div class="errors" *ngIf="userAge.invalid">
+    <div class="errors" *ngIf="userAge.touched && userAge.invalid">
       <div *ngIf="userAge.errors.required">This field is required</div>
       <div *ngIf="userAge.errors.minvalue">This field is too small</div>
     </div>

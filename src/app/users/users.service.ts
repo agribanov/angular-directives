@@ -1,29 +1,35 @@
 import { Injectable } from '@angular/core';
-import { USERS } from './users-mock';
 import { Observable } from 'rxjs/Observable';
 import { User } from './models/User';
-import { of } from 'rxjs/observable/of';
+import { HttpClient } from '@angular/common/http';
+import  { environment } from '../../environments/environment';
 
+const apiUrl = environment.apiUrl;
+const resourse = environment.resourses.users
 
 @Injectable()
 export class UsersService {
-  users = USERS
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   getList(): Observable<User[]>{
-    return of(this.users);
+    return this.http.get<User[]>(`${apiUrl}/${resourse}`);
   }
 
   get(id: number): Observable<User>{
-    const user = this.users.find(user => user.id === id);
-    return of(Object.assign({}, user));
+    return this.http.get<User>(`${apiUrl}/${resourse}/${id}`);
   }
 
   update(user: User): Observable<User>{
-    this.users = this.users.map(savedUser => 
-      savedUser.id === user.id ? user : savedUser );
+    return this.http.put<User>(`${apiUrl}/${resourse}/${user.id}`, user);
+  }
 
-    return of(user)
+  create(user: User): Observable<User>{
+    return this.http.post<User>(`${apiUrl}/${resourse}`, user)
+  }
+
+  delete(id: number): Observable<void>{
+    console.log('deleting user', id);
+    return this.http.delete<void>(`${apiUrl}/${resourse}/${id}`)
   }
 
 }

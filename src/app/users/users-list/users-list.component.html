@@ -11,7 +11,10 @@
     <tr *ngFor="let user of users$ | async" [routerLink]="[user.id]">
       <td>{{user.name}}</td>
       <td>{{user.age}}</td>
-      <td><a [routerLink] = "['../', 'edit', user.id]">Edit</a></td>
+      <td>
+        <a [routerLink] = "['../', 'edit', user.id]">Edit</a> | 
+        <a href="" (click)="onDeleteUserClick($event, user.id)">Delete</a>
+      </td>
     </tr>
   </tbody>
 </table>

@@ -1,3 +1,4 @@
-<p>
-  user-add works!
-</p>
+<h1>Add User</h1>
+<app-user-form [user] = "user" 
+  (save) = "onFormSave($event)" 
+  (cancel) = "onFormCancel()"></app-user-form>
